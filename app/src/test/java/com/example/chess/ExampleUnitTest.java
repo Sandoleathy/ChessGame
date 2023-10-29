@@ -1,4 +1,4 @@
-package com.android.chess;
+package com.example.chess;
 
 import org.junit.Test;
 
