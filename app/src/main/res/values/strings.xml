@@ -3,4 +3,15 @@
     <string name="title_activity_menu">Menu</string>
     <string name="start">Click to start</string>
 
+    <string name="horse">馬</string>
+    <string name="car">車</string>
+    <string name="minister_black">象</string>
+    <string name="minister_red">相</string>
+    <string name="scholar_black">士</string>
+    <string name="scholar_red">仕</string>
+    <string name="general_black">将</string>
+    <string name="general_red">帅</string>
+    <string name="gun">炮</string>
+    <string name="soldier_black">卒</string>
+    <string name="soldier_red">兵</string>
 </resources>
