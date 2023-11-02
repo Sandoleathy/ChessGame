@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="line">
+    <!-- 横线 -->
+    <item android:top="50dp" android:bottom="52dp">
+        <shape android:shape="rectangle">
+            <size android:height="2dp" />
+            <solid android:color="#000" /> <!-- 设置颜色，这里是黑色 -->
+        </shape>
+    </item>
+
+    <!-- 竖线 -->
+    <item android:left="50dp" android:right="52dp">
+        <shape android:shape="rectangle">
+            <size android:width="2dp" />
+            <solid android:color="#000" />
+        </shape>
+    </item>
+</layer-list>

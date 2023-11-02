@@ -1,13 +1,9 @@
 package com.example.chess.models;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-
 import com.example.chess.iface.ChineseChessPieceType;
+import com.example.chess.iface.iPiece;
 
-public class ChineseChessPiece extends View{
+public class ChineseChessPiece implements iPiece {
     public String name;
     public ChineseChessPieceType type;
     public static final int BLACK_SIDE = 1;
@@ -15,21 +11,39 @@ public class ChineseChessPiece extends View{
     public int side;
     public float x = 0;
     public float y = 0;
-    public ChineseChessPiece(ChineseChessPieceType type , int side , Context context){
-        super(context);
+    public ChineseChessPiece(ChineseChessPieceType type , int side){
         this.type = type;
         this.name = type.toString();
         this.side = side;
     }
+    @Override
     public void setPosition(int x,int y){
         this.x = x;
         this.y =y;
     }
+
     @Override
-    public void draw(Canvas canvas){
-        Paint paint = new Paint();
-        super.draw(canvas);
-        canvas.drawCircle(x,y,10,paint);
+    public String getName() {
+        return name;
     }
+
+    public float getX(){
+        return x;
+    }
+    public float getY(){
+        return y;
+    }
+
+    @Override
+    public int getSide() {
+        return side;
+    }
+
+    @Override
+    public ChineseChessPieceType getType() {
+        return type;
+    }
+
+
 }
 

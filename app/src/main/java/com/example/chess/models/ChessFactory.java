@@ -1,13 +1,10 @@
 package com.example.chess.models;
 
-import android.content.Context;
-
 import com.example.chess.iface.ChineseChessPieceType;
 
 public class ChessFactory {
-    private Context context;
-    public ChessFactory(Context context){
-        this.context = context;
+    public ChessFactory(){
+
     }
     public ChineseChessPiece[][] initChineseChess(){
         //init the board
@@ -22,24 +19,24 @@ public class ChessFactory {
         ChineseChessPiece general;
         //create black side pieces
         for(int i = 0; i < soldiers.length ; i++){
-            soldiers[i] = new ChineseChessPiece(ChineseChessPieceType.SOLDIER,ChineseChessPiece.BLACK_SIDE,context);
+            soldiers[i] = new ChineseChessPiece(ChineseChessPieceType.SOLDIER,ChineseChessPiece.BLACK_SIDE);
         }
         for(int i = 0; i < guns.length ; i++){
-            soldiers[i] = new ChineseChessPiece(ChineseChessPieceType.GUN,ChineseChessPiece.BLACK_SIDE,context);
+            guns[i] = new ChineseChessPiece(ChineseChessPieceType.GUN,ChineseChessPiece.BLACK_SIDE);
         }
         for(int i = 0; i < cars.length ; i++){
-            soldiers[i] = new ChineseChessPiece(ChineseChessPieceType.CAR,ChineseChessPiece.BLACK_SIDE,context);
+            cars[i] = new ChineseChessPiece(ChineseChessPieceType.CAR,ChineseChessPiece.BLACK_SIDE);
         }
         for(int i = 0; i < horses.length ; i++){
-            soldiers[i] = new ChineseChessPiece(ChineseChessPieceType.HORSE,ChineseChessPiece.BLACK_SIDE,context);
+            horses[i] = new ChineseChessPiece(ChineseChessPieceType.HORSE,ChineseChessPiece.BLACK_SIDE);
         }
         for(int i = 0; i < ministers.length ; i++){
-            soldiers[i] = new ChineseChessPiece(ChineseChessPieceType.MINISTER,ChineseChessPiece.BLACK_SIDE,context);
+            ministers[i] = new ChineseChessPiece(ChineseChessPieceType.MINISTER,ChineseChessPiece.BLACK_SIDE);
         }
         for(int i = 0; i < scholars.length ; i++){
-            soldiers[i] = new ChineseChessPiece(ChineseChessPieceType.SCHOLAR,ChineseChessPiece.BLACK_SIDE,context);
+            scholars[i] = new ChineseChessPiece(ChineseChessPieceType.SCHOLAR,ChineseChessPiece.BLACK_SIDE);
         }
-        general = new ChineseChessPiece(ChineseChessPieceType.GENERAL,ChineseChessPiece.BLACK_SIDE,context);
+        general = new ChineseChessPiece(ChineseChessPieceType.GENERAL,ChineseChessPiece.BLACK_SIDE);
         //place the chess pieces to the board
         //general
         board[0][4] = general;
@@ -67,24 +64,51 @@ public class ChessFactory {
 
         //create red side pieces
         for(int i = 0; i < soldiers.length ; i++){
-            soldiers[i] = new ChineseChessPiece(ChineseChessPieceType.SOLDIER,ChineseChessPiece.RED_SIDE,context);
+            soldiers[i] = new ChineseChessPiece(ChineseChessPieceType.SOLDIER,ChineseChessPiece.RED_SIDE);
         }
         for(int i = 0; i < guns.length ; i++){
-            soldiers[i] = new ChineseChessPiece(ChineseChessPieceType.GUN,ChineseChessPiece.RED_SIDE,context);
+            guns[i] = new ChineseChessPiece(ChineseChessPieceType.GUN,ChineseChessPiece.RED_SIDE);
         }
         for(int i = 0; i < cars.length ; i++){
-            soldiers[i] = new ChineseChessPiece(ChineseChessPieceType.CAR,ChineseChessPiece.RED_SIDE,context);
+            cars[i] = new ChineseChessPiece(ChineseChessPieceType.CAR,ChineseChessPiece.RED_SIDE);
         }
         for(int i = 0; i < horses.length ; i++){
-            soldiers[i] = new ChineseChessPiece(ChineseChessPieceType.HORSE,ChineseChessPiece.RED_SIDE,context);
+            horses[i] = new ChineseChessPiece(ChineseChessPieceType.HORSE,ChineseChessPiece.RED_SIDE);
         }
         for(int i = 0; i < ministers.length ; i++){
-            soldiers[i] = new ChineseChessPiece(ChineseChessPieceType.MINISTER,ChineseChessPiece.RED_SIDE,context);
+            ministers[i] = new ChineseChessPiece(ChineseChessPieceType.MINISTER,ChineseChessPiece.RED_SIDE);
         }
         for(int i = 0; i < scholars.length ; i++){
-            soldiers[i] = new ChineseChessPiece(ChineseChessPieceType.SCHOLAR,ChineseChessPiece.RED_SIDE,context);
+            scholars[i] = new ChineseChessPiece(ChineseChessPieceType.SCHOLAR,ChineseChessPiece.RED_SIDE);
         }
-        general = new ChineseChessPiece(ChineseChessPieceType.GENERAL,ChineseChessPiece.RED_SIDE,context);
+        general = new ChineseChessPiece(ChineseChessPieceType.GENERAL,ChineseChessPiece.RED_SIDE);
+
+        //general
+        board[9][4] = general;
+        j = 0;
+        //soldier
+        for(ChineseChessPiece piece : soldiers){
+            board[6][j] = piece;
+            j = j + 2;
+        }
+        //gun
+        board[7][1] = guns[0];
+        board[7][7] = guns[0];
+        //car
+        board[9][0] = cars[0];
+        board[9][8] = cars[1];
+        //horse
+        board[9][1] = horses[0];
+        board[9][7] = horses[1];
+        //minister
+        board[9][2] = ministers[0];
+        board[9][6] = ministers[1];
+        //scholar
+        board[9][3] = scholars[0];
+        board[9][5] = scholars[1];
+
+
+        //Log.w("ChineseChess" , Arrays.toString(board[0]));
         return board;
     }
 }
