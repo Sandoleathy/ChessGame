@@ -22,6 +22,9 @@ public class PieceAdapter extends BaseAdapter {
         this.context = context;
         this.pieceList = pieceList;
     }
+    public void updateData(iPiece[] pieces){
+        this.pieceList = pieces;
+    }
 
     @Override
     public int getCount() {
@@ -48,11 +51,11 @@ public class PieceAdapter extends BaseAdapter {
         ImageView grid = v.findViewById(R.id.grid);
         //need to change the text color
         TextView text = v.findViewById(R.id.piece_text);
-        grid.setClickable(false);
+        //grid.setClickable(true);
         if(pieceList[i] == null){
             piece.setVisibility(View.INVISIBLE);
             text.setVisibility(View.INVISIBLE);
-            grid.setClickable(true);
+            //grid.setClickable(true);
             return v;
         }
         //black and red side will have different text color
