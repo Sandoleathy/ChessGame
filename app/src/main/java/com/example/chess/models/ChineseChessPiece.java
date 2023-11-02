@@ -9,8 +9,8 @@ public class ChineseChessPiece implements iPiece {
     public static final int BLACK_SIDE = 1;
     public static final int RED_SIDE = 0;
     public int side;
-    public float x = 0;
-    public float y = 0;
+    public int x = 0;
+    public int y = 0;
     public ChineseChessPiece(ChineseChessPieceType type , int side){
         this.type = type;
         this.name = type.toString();
@@ -25,13 +25,6 @@ public class ChineseChessPiece implements iPiece {
     @Override
     public String getName() {
         return name;
-    }
-
-    public float getX(){
-        return x;
-    }
-    public float getY(){
-        return y;
     }
 
     @Override

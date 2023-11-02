@@ -38,10 +38,14 @@ public class PieceAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         LayoutInflater inflater = LayoutInflater.from(this.context);
         View v = inflater.inflate(R.layout.chess_piece_item,null);
+        //need to edit the piece visibility
         ImageView piece = v.findViewById(R.id.chess_piece);
+        //need to use different grid image
         ImageView grid = v.findViewById(R.id.grid);
+        grid.setClickable(false);
         if(pieceList[i] == null){
             piece.setVisibility(View.INVISIBLE);
+            grid.setClickable(true);
         }
         return v;
     }
