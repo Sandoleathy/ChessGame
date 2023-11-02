@@ -1,17 +1,17 @@
 package com.example.chess.models;
 
-import com.example.chess.iface.ChineseChessPieceType;
+import com.example.chess.iface.ChessPieceType;
 import com.example.chess.iface.iPiece;
 
 public class ChineseChessPiece implements iPiece {
     public String name;
-    public ChineseChessPieceType type;
+    public ChessPieceType type;
     public static final int BLACK_SIDE = 1;
     public static final int RED_SIDE = 0;
     public int side;
     public int x = 0;
     public int y = 0;
-    public ChineseChessPiece(ChineseChessPieceType type , int side){
+    public ChineseChessPiece(ChessPieceType type , int side){
         this.type = type;
         this.name = type.toString();
         this.side = side;
@@ -33,7 +33,7 @@ public class ChineseChessPiece implements iPiece {
     }
 
     @Override
-    public ChineseChessPieceType getType() {
+    public ChessPieceType getType() {
         return type;
     }
 
