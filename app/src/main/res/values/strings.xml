@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Chess</string>
+    <string name="app_name">Chess Game</string>
     <string name="title_activity_menu">Menu</string>
     <string name="start">Click to start</string>
 
