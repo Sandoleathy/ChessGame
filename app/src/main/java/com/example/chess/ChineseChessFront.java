@@ -58,11 +58,7 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
             ImageView pieceView = view.findViewById(R.id.chess_piece);
             currentSelectedPiece = pieceView;
             //ImageView pieceView = (ImageView) view;
-            pieceView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-            pieceView.setScaleX(1.1f);
-            pieceView.setScaleY(1.1f);
-            //request update the view
-            pieceView.requestLayout();
+            scaleSelectedPiece(currentSelectedPiece);
             Log.i("ChineseChess" , "click chess piece" + row + " " + column);
         }
         //if already select a piece
@@ -71,29 +67,18 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
             //only click chess in the same side can change the select piece
             //change selected piece
             if(chessboard[row][column] != game.selectedPiece && chessboard[row][column] != null && chessboard[row][column].side == game.selectedPiece.side){
-                currentSelectedPiece.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-                currentSelectedPiece.setScaleX(1.0f);
-                currentSelectedPiece.setScaleY(1.0f);
-                //request update the view
-                currentSelectedPiece.requestLayout();
+                resetScaleForPiece(currentSelectedPiece);
                 //change the current piece
                 game.selectedPiece = chessboard[row][column];
                 currentSelectedPiece = view.findViewById(R.id.chess_piece);
                 //scale the current piece
-                currentSelectedPiece.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-                currentSelectedPiece.setScaleX(1.1f);
-                currentSelectedPiece.setScaleY(1.1f);
-                currentSelectedPiece.requestLayout();
+                scaleSelectedPiece(currentSelectedPiece);
             }
             //click selected piece
             //unselect piece
             else if(chessboard[row][column] == game.selectedPiece){
                 //click itself
-                currentSelectedPiece.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-                currentSelectedPiece.setScaleX(1.0f);
-                currentSelectedPiece.setScaleY(1.0f);
-                //request update the view
-                currentSelectedPiece.requestLayout();
+                resetScaleForPiece(currentSelectedPiece);
                 //reset the selected piece
                 currentSelectedPiece = null;
                 game.selectedPiece = null;
@@ -106,8 +91,24 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
                 adapter.updateData(convertBoard());
                 //update the data
                 adapter.notifyDataSetChanged();
+                //reset select piece ------ go to opponent
+                game.selectedPiece = null;
+                currentSelectedPiece = null;
             }
         }
         //Log.e("ChineseChess" , "click board");
+    }
+    private void scaleSelectedPiece(ImageView piece){
+        piece.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        piece.setScaleX(1.1f);
+        piece.setScaleY(1.1f);
+        //request update the view
+        piece.requestLayout();
+    }
+    private void resetScaleForPiece(ImageView piece){
+        piece.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        piece.setScaleX(1.0f);
+        piece.setScaleY(1.0f);
+        piece.requestLayout();
     }
 }
