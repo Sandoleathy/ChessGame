@@ -7,10 +7,11 @@
     <path
         android:pathData="
         M0,50
-        L100,50
+        L50,50
         M50,0
         L50,100
         "
         android:strokeWidth="2"
         android:strokeColor="@color/black"/>
+
 </vector>

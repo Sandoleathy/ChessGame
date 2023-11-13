@@ -69,6 +69,7 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
         else if (game.selectedPiece != null) {
             //should reset the size of current selectedPiece and change the new selected piece size
             //only click chess in the same side can change the select piece
+            //change selected piece
             if(chessboard[row][column] != game.selectedPiece && chessboard[row][column] != null && chessboard[row][column].side == game.selectedPiece.side){
                 currentSelectedPiece.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                 currentSelectedPiece.setScaleX(1.0f);
@@ -83,7 +84,10 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
                 currentSelectedPiece.setScaleX(1.1f);
                 currentSelectedPiece.setScaleY(1.1f);
                 currentSelectedPiece.requestLayout();
-            }else if(chessboard[row][column] == game.selectedPiece){
+            }
+            //click selected piece
+            //unselect piece
+            else if(chessboard[row][column] == game.selectedPiece){
                 //click itself
                 currentSelectedPiece.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                 currentSelectedPiece.setScaleX(1.0f);
@@ -93,7 +97,9 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
                 //reset the selected piece
                 currentSelectedPiece = null;
                 game.selectedPiece = null;
-            } else if (chessboard[row][column] == null || chessboard[row][column].side != game.selectedPiece.side) {
+            }
+            //eat or move piece
+            else if (chessboard[row][column] == null || chessboard[row][column].side != game.selectedPiece.side) {
                 //piece move or eat enemy
                 game.movePiece(game.selectedPiece,row,column);
                 chessboard = game.getChessboard();

@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
         android:background="@drawable/replace_piece"
         app:layout_constraintTop_toTopOf="@id/grid"
         app:layout_constraintLeft_toLeftOf="@id/grid"
@@ -24,8 +24,8 @@
         android:textColor="@color/red"
         android:id="@+id/piece_text"/>
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="45sp"
+        android:layout_height="45sp"
         android:src="@drawable/cross"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

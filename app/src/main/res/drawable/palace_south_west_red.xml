@@ -9,7 +9,9 @@
         M0,50
         L100,50
         M50,0
-        L50,100
+        L50,50
+        M50,50
+        L100,0
         "
         android:strokeWidth="2"
         android:strokeColor="@color/black"/>

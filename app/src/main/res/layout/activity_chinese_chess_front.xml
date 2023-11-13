@@ -11,14 +11,34 @@
         android:text="This is game screen"
         android:textSize="40sp"
         android:id="@+id/title"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/river_name_red"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/river_2"
+        android:id="@+id/river_1"
+        android:textSize="25sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/river_name_black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/river_1"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/river_2"
+        android:textSize="25sp"/>
     <GridView
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="500sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="405sp"
+        android:layout_height="450sp"
         android:id="@+id/chinese_chess_board"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:numColumns="9"
         android:stretchMode="columnWidth"
         android:layout_below="@id/title"/>

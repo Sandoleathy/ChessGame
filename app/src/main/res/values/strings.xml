@@ -14,4 +14,6 @@
     <string name="gun">炮</string>
     <string name="soldier_black">卒</string>
     <string name="soldier_red">兵</string>
+    <string name="river_name_red">楚河</string>
+    <string name="river_name_black">漢界</string>
 </resources>

@@ -6,9 +6,9 @@
     android:viewportHeight="100">
     <path
         android:pathData="
-        M0,50
+        M50,50
         L100,50
-        M50,0
+        M50,49
         L50,100
         "
         android:strokeWidth="2"

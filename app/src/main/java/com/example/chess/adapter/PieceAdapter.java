@@ -52,6 +52,57 @@ public class PieceAdapter extends BaseAdapter {
         //need to change the text color
         TextView text = v.findViewById(R.id.piece_text);
         //grid.setClickable(true);
+
+        //now do some grid operation
+        //border check
+        if(i%9 == 0){
+            grid.setImageResource(R.drawable.left_border);
+        } else if (i%9 == 8) {
+            grid.setImageResource(R.drawable.right_border);
+        } else if (i>=0 && i<=8) {
+            grid.setImageResource(R.drawable.top_border);
+        } else if(i>= 80 && i<=89){
+            grid.setImageResource(R.drawable.bottom_border);
+        }
+        //corner check
+        if(i == 0){
+            grid.setImageResource(R.drawable.left_top_corner);
+        } else if (i == 8) {
+            grid.setImageResource(R.drawable.right_top_corner);
+        } else if (i == 81) {
+            grid.setImageResource(R.drawable.left_bottom_corner);
+        } else if (i == 89) {
+            grid.setImageResource(R.drawable.rigth_bottom_corner);
+        }
+        //river check
+        if(i > 36 && i < 44){
+            grid.setImageResource(R.drawable.bottom_border);
+        } else if ( i > 45 && i < 53 ) {
+            grid.setImageResource(R.drawable.top_border);
+        }
+        //palace check
+        if(i == 3){
+            grid.setImageResource(R.drawable.palace_north_west_black);
+        } else if (i == 5) {
+            grid.setImageResource(R.drawable.palace_north_east_black);
+        } else if (i == 13 || i == 76) {
+            grid.setImageResource(R.drawable.palace_center);
+        } else if (i == 21) {
+            grid.setImageResource(R.drawable.palace_south_west_black);
+        } else if (i == 23) {
+            grid.setImageResource(R.drawable.palace_south_east_black);
+        } else if (i == 84) {
+            grid.setImageResource(R.drawable.palace_south_west_red);
+        } else if (i == 86) {
+            grid.setImageResource(R.drawable.palace_south_east_red);
+        } else if (i == 68) {
+            grid.setImageResource(R.drawable.palace_north_east_red);
+        } else if(i == 66){
+            grid.setImageResource(R.drawable.palace_north_west_red);
+        }
+
+        //this method will return
+        //so the grid operation should do before it
         if(pieceList[i] == null){
             piece.setVisibility(View.INVISIBLE);
             text.setVisibility(View.INVISIBLE);
