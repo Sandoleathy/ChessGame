@@ -86,7 +86,9 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
             //eat or move piece
             else if (chessboard[row][column] == null || chessboard[row][column].side != game.selectedPiece.side) {
                 //piece move or eat enemy
-                game.movePiece(game.selectedPiece,row,column);
+                if(!game.movePiece(game.selectedPiece,row,column)){
+                    return;
+                }
                 chessboard = game.getChessboard();
                 adapter.updateData(convertBoard());
                 //update the data

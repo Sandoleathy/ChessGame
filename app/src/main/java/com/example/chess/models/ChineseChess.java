@@ -7,6 +7,9 @@ import android.widget.ImageView;
 import com.example.chess.ChineseChessFront;
 import com.example.chess.R;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 public class ChineseChess {
@@ -51,8 +54,20 @@ public class ChineseChess {
      * @param targetX  the target x position of piece
      * @param targetY  the target y position of piece
      */
-    public void movePiece(ChineseChessPiece piece , int targetX , int targetY){
+    public boolean movePiece(ChineseChessPiece piece , int targetX , int targetY){
         //get the piece
+        boolean isMoveInvalid = false;
+        List<List<Integer>> movablePositions = generateMovableArea();
+        for(List<Integer> i : movablePositions){
+            if(targetX == i.get(0) && targetY == i.get(1)){
+                isMoveInvalid = true;
+                break;
+            }
+        }
+        if(!isMoveInvalid){
+            return false;
+        }
+
         this.chessboard[piece.x][piece.y] = null;
         //never forget to change chess position and board position
         piece.setPosition(targetX,targetY);
@@ -72,10 +87,10 @@ public class ChineseChess {
                 }
             }else{
                 Log.e("ChineseChess" , "Wrong step!!!");
-                return;
+                return false;
             }
         }
-
+        return true;
     }
     public void switchSide(){
         if(currentPlayerSide == ChineseChessPiece.RED_SIDE){
@@ -88,5 +103,86 @@ public class ChineseChess {
     public int getCurrentPlayerSide(){
         return this.currentPlayerSide;
     }
-
+    private List<List<Integer>> generateMovableArea(){
+        List<List<Integer>> movablePositions = new LinkedList<>();
+        int x = selectedPiece.x;
+        int y = selectedPiece.y;
+        LinkedList<Integer> position;
+        switch (selectedPiece.type){
+            case CAR:
+                //loop the column that piece have
+                //check down
+                for(int i=x;i<chessboard.length;i++){
+                    if(chessboard[i][y] != selectedPiece && chessboard[i][y] == null){
+                        position = new LinkedList<>();
+                        position.add(i);
+                        position.add(y);
+                        movablePositions.add(position);
+                    } else if (chessboard[i][y] != selectedPiece && chessboard[i][y] != null) {
+                        //if this piece is enemy then car can move to there and eat it
+                        if(chessboard[i][y].side != selectedPiece.side){
+                            position = new LinkedList<>();
+                            position.add(i);
+                            position.add(y);
+                            movablePositions.add(position);
+                        }
+                        break;
+                    }
+                }
+                //check up
+                for(int i=x;i>=0;i--){
+                    if(chessboard[i][y] != selectedPiece && chessboard[i][y] == null){
+                        position = new LinkedList<>();
+                        position.add(i);
+                        position.add(y);
+                        movablePositions.add(position);
+                    } else if (chessboard[i][y] != selectedPiece && chessboard[i][y] != null) {
+                        //if this piece is enemy then car can move to there and eat it
+                        if(chessboard[i][y].side != selectedPiece.side){
+                            position = new LinkedList<>();
+                            position.add(i);
+                            position.add(y);
+                            movablePositions.add(position);
+                        }
+                        break;
+                    }
+                }
+                //check left
+                for(int i=y;i>=0;i--){
+                    if(chessboard[x][i] != selectedPiece && chessboard[x][i] == null){
+                        position = new LinkedList<>();
+                        position.add(x);
+                        position.add(i);
+                        movablePositions.add(position);
+                    } else if (chessboard[x][i] != selectedPiece && chessboard[x][i] != null) {
+                        if(chessboard[x][i].side != selectedPiece.side){
+                            position = new LinkedList<>();
+                            position.add(x);
+                            position.add(i);
+                            movablePositions.add(position);
+                        }
+                        break;
+                    }
+                }
+                //check right
+                for(int i=y;i<chessboard[x].length;i++){
+                    if(chessboard[x][i] != selectedPiece && chessboard[x][i] == null){
+                        position = new LinkedList<>();
+                        position.add(x);
+                        position.add(i);
+                        movablePositions.add(position);
+                    } else if (chessboard[x][i] != selectedPiece && chessboard[x][i] != null) {
+                        if(chessboard[x][i].side != selectedPiece.side){
+                            position = new LinkedList<>();
+                            position.add(x);
+                            position.add(i);
+                            movablePositions.add(position);
+                        }
+                        break;
+                    }
+                }
+                break;
+        }
+        return movablePositions;
+    }
 }
