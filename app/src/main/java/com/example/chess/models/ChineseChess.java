@@ -417,8 +417,11 @@ public class ChineseChess {
                 }
             case HORSE:
                 /**
-                 * 
+                 * horse's movement is complex
+                 * horse can move in 日 from which means it is oblique movement
+                 * but reflect in code it is simple because we only need to check at most 8 positions
                  */
+                
         }
         //Log.e("ChineseChess" , movablePositions.toString());
         return movablePositions;
