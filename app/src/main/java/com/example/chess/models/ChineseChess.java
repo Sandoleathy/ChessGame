@@ -110,6 +110,10 @@ public class ChineseChess {
         LinkedList<Integer> position;
         switch (selectedPiece.type){
             case CAR:
+                /**
+                 * the car's movement is the simplest
+                 * car go directly and eat the first piece in its column or row
+                 */
                 //loop the column that piece have
                 //check down
                 for(int i=x;i<chessboard.length;i++){
@@ -147,6 +151,7 @@ public class ChineseChess {
                         break;
                     }
                 }
+                //loop the row that piece has
                 //check left
                 for(int i=y;i>=0;i--){
                     if(chessboard[x][i] != selectedPiece && chessboard[x][i] == null){
@@ -182,6 +187,120 @@ public class ChineseChess {
                     }
                 }
                 break;
+            case GUN:
+                /**
+                 * The gun can mount and eat piece that behind another piece
+                 * so we need to check almost all grid in a row or column
+                 * once we meet a piece the gun is mounted. we call this piece as support
+                 * if the next piece we meet is enemy the gun can eat it
+                 * and we stop check
+                 * also the position behind the support is unmovable
+                 */
+                //loop the column that piece have
+                //check down
+                boolean isGunMounted = false;
+                for(int i=x;i<chessboard.length;i++){
+                    if(chessboard[i][y] != selectedPiece && chessboard[i][y] == null){
+                        if(isGunMounted){
+                            continue;
+                        }
+                        position = new LinkedList<>();
+                        position.add(i);
+                        position.add(y);
+                        movablePositions.add(position);
+                    } else if (chessboard[i][y] != selectedPiece && chessboard[i][y] != null) {
+                        if(isGunMounted){
+                            if(chessboard[i][y].side != selectedPiece.side){
+                                position = new LinkedList<>();
+                                position.add(i);
+                                position.add(y);
+                                movablePositions.add(position);
+                            }
+                            break;
+                        }else{
+                            isGunMounted = true;
+                        }
+                    }
+                }
+                //reset the support
+                isGunMounted = false;
+                //check up
+                for(int i=x;i>=0;i--){
+                    if(chessboard[i][y] != selectedPiece && chessboard[i][y] == null){
+                        if(isGunMounted){
+                            continue;
+                        }
+                        position = new LinkedList<>();
+                        position.add(i);
+                        position.add(y);
+                        movablePositions.add(position);
+                    } else if (chessboard[i][y] != selectedPiece && chessboard[i][y] != null) {
+                        if(isGunMounted){
+                            if(chessboard[i][y].side != selectedPiece.side){
+                                position = new LinkedList<>();
+                                position.add(i);
+                                position.add(y);
+                                movablePositions.add(position);
+                            }
+                            break;
+                        }else{
+                            isGunMounted = true;
+                        }
+                    }
+                }
+                //loop the row that piece has
+                //reset the support
+                isGunMounted = false;
+                //check left
+                for(int i=y;i>=0;i--){
+                    if(chessboard[x][i] != selectedPiece && chessboard[x][i] == null){
+                        if(isGunMounted){
+                            continue;
+                        }
+                        position = new LinkedList<>();
+                        position.add(x);
+                        position.add(i);
+                        movablePositions.add(position);
+                    } else if (chessboard[x][i] != selectedPiece && chessboard[x][i] != null) {
+                        if(isGunMounted){
+                            if(chessboard[x][i].side != selectedPiece.side){
+                                position = new LinkedList<>();
+                                position.add(x);
+                                position.add(i);
+                                movablePositions.add(position);
+                            }
+                            break;
+                        }else{
+                            isGunMounted = true;
+                        }
+                    }
+                }
+                //reset the support
+                isGunMounted = false;
+                //check right
+                for(int i=y;i<chessboard[x].length;i++){
+                    if(chessboard[x][i] != selectedPiece && chessboard[x][i] == null){
+                        if(isGunMounted){
+                            continue;
+                        }
+                        position = new LinkedList<>();
+                        position.add(x);
+                        position.add(i);
+                        movablePositions.add(position);
+                    } else if (chessboard[x][i] != selectedPiece && chessboard[x][i] != null) {
+                        if(isGunMounted){
+                            if(chessboard[x][i].side != selectedPiece.side){
+                                position = new LinkedList<>();
+                                position.add(x);
+                                position.add(i);
+                                movablePositions.add(position);
+                            }
+                            break;
+                        }else{
+                            isGunMounted = true;
+                        }
+                    }
+                }
         }
         return movablePositions;
     }
