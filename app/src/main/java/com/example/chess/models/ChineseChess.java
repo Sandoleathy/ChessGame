@@ -415,6 +415,7 @@ public class ChineseChess {
                         }
                         break;
                 }
+                break;
             case HORSE:
                 /**
                  * horse's movement is complex
@@ -502,6 +503,7 @@ public class ChineseChess {
                     }
 
                 }
+                break;
             case MINISTER:
                 /**
                  * minister is just like hose
@@ -588,6 +590,111 @@ public class ChineseChess {
                             }
                     }
                 }
+                break;
+            case SCHOLAR:
+                /**
+                 * scholar is the guard of general
+                 * it can only move inside palace
+                 * scholar can move diagonally
+                 */
+                List<Integer> scholarPos = new LinkedList<>();
+                List<List<Integer>> scholarPositions = new LinkedList<>();
+                //right top
+                scholarPos.add(x-1);
+                scholarPos.add(y+1);
+                scholarPositions.add(scholarPos);
+                //right bottom
+                scholarPos = new LinkedList<>();
+                scholarPos.add(x+1);
+                scholarPos.add(y+1);
+                scholarPositions.add(scholarPos);
+                //left bottom
+                scholarPos = new LinkedList<>();
+                scholarPos.add(x+1);
+                scholarPos.add(y-1);
+                scholarPositions.add(scholarPos);
+                //left top
+                scholarPos = new LinkedList<>();
+                scholarPos.add(x-1);
+                scholarPos.add(y-1);
+                scholarPositions.add(scholarPos);
+
+                switch (selectedPiece.side){
+                    case RED_SIDE:
+                        for(List<Integer> i : scholarPositions){
+                            if(i.get(0) >= 7 && i.get(0) <= 9 && i.get(1) >= 3 && i.get(1) <= 5){
+                                //actually there is no need to check if there are same side pieces
+                                //because if we click same side piece we will select it
+                                position = new LinkedList<>();
+                                position.add(i.get(0));
+                                position.add(i.get(1));
+                                movablePositions.add(position);
+                            }
+                        }
+                        break;
+                    case BLACK_SIDE:
+                        for(List<Integer> i : scholarPositions){
+                            if(i.get(0) >= 0 && i.get(0) <= 2 && i.get(1) >= 3 && i.get(1) <= 5){
+                                position = new LinkedList<>();
+                                position.add(i.get(0));
+                                position.add(i.get(1));
+                                movablePositions.add(position);
+                            }
+                        }
+                        break;
+                }
+                break;
+            case GENERAL:
+                /**
+                 * general can only move in the palace
+                 */
+                List<Integer> generalPos = new LinkedList<>();
+                List<List<Integer>> generalPositions = new LinkedList<>();
+                //up
+                generalPos.add(x-1);
+                generalPos.add(y);
+                generalPositions.add(generalPos);
+                //right
+                generalPos = new LinkedList<>();
+                generalPos.add(x);
+                generalPos.add(y+1);
+                generalPositions.add(generalPos);
+                //down
+                generalPos = new LinkedList<>();
+                generalPos.add(x+1);
+                generalPos.add(y);
+                generalPositions.add(generalPos);
+                //left
+                generalPos = new LinkedList<>();
+                generalPos.add(x);
+                generalPos.add(y-1);
+                generalPositions.add(generalPos);
+
+                switch (selectedPiece.side){
+                    case RED_SIDE:
+                        for(List<Integer> i : generalPositions){
+                            if(i.get(0) >= 7 && i.get(0) <= 9 && i.get(1) >= 3 && i.get(1) <= 5){
+                                //actually there is no need to check if there are same side pieces
+                                //because if we click same side piece we will select it
+                                position = new LinkedList<>();
+                                position.add(i.get(0));
+                                position.add(i.get(1));
+                                movablePositions.add(position);
+                            }
+                        }
+                        break;
+                    case BLACK_SIDE:
+                        for(List<Integer> i : generalPositions){
+                            if(i.get(0) >= 0 && i.get(0) <= 2 && i.get(1) >= 3 && i.get(1) <= 5){
+                                position = new LinkedList<>();
+                                position.add(i.get(0));
+                                position.add(i.get(1));
+                                movablePositions.add(position);
+                            }
+                        }
+                        break;
+                }
+                break;
         }
         //Log.e("ChineseChess" , movablePositions.toString());
         return movablePositions;
