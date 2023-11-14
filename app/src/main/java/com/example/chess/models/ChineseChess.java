@@ -1,13 +1,9 @@
 package com.example.chess.models;
+
+import static com.example.chess.models.ChineseChessPiece.BLACK_SIDE;
+import static com.example.chess.models.ChineseChessPiece.RED_SIDE;
+
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-
-import com.example.chess.ChineseChessFront;
-import com.example.chess.R;
-
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
@@ -77,7 +73,7 @@ public class ChineseChess {
             ChineseChessPiece enemy = chessboard[targetX][targetY];
             if(piece.side != enemy.side){
                 //eat enemy
-                if(piece.side == ChineseChessPiece.BLACK_SIDE){
+                if(piece.side == BLACK_SIDE){
                     redDiedPieces.push(enemy);
                     chessboard[targetX][targetY] = piece;
                 }
@@ -94,7 +90,7 @@ public class ChineseChess {
     }
     public void switchSide(){
         if(currentPlayerSide == ChineseChessPiece.RED_SIDE){
-            this.currentPlayerSide = ChineseChessPiece.BLACK_SIDE;
+            this.currentPlayerSide = BLACK_SIDE;
         }else{
             this.currentPlayerSide = ChineseChessPiece.RED_SIDE;
         }
@@ -278,9 +274,9 @@ public class ChineseChess {
                 //reset the support
                 isGunMounted = false;
                 //check right
-                for(int i=y;i<chessboard[x].length;i++){
-                    if(chessboard[x][i] != selectedPiece && chessboard[x][i] == null){
-                        if(isGunMounted){
+                for(int i=y;i<chessboard[x].length;i++) {
+                    if (chessboard[x][i] != selectedPiece && chessboard[x][i] == null) {
+                        if (isGunMounted) {
                             continue;
                         }
                         position = new LinkedList<>();
@@ -288,19 +284,85 @@ public class ChineseChess {
                         position.add(i);
                         movablePositions.add(position);
                     } else if (chessboard[x][i] != selectedPiece && chessboard[x][i] != null) {
-                        if(isGunMounted){
-                            if(chessboard[x][i].side != selectedPiece.side){
+                        if (isGunMounted) {
+                            if (chessboard[x][i].side != selectedPiece.side) {
                                 position = new LinkedList<>();
                                 position.add(x);
                                 position.add(i);
                                 movablePositions.add(position);
                             }
                             break;
-                        }else{
+                        } else {
                             isGunMounted = true;
                         }
                     }
                 }
+            case SOLDIER:
+                /**
+                 * the soldier's movement is easy but it's also hard
+                 * soldiers can only move forward for 1 grid.
+                 * But after they cross the river they can move to left or right for 1 grid
+                 * so it's different for two sides soldiers
+                  */
+                switch(selectedPiece.side){
+                    case RED_SIDE:
+                        //check forward
+                        if(x > 0){
+                            if(chessboard[x-1][y] == null){
+                                position = new LinkedList<>();
+                                position.add(x-1);
+                                position.add(y);
+                                movablePositions.add(position);
+                            } else if (chessboard[x-1][y] != null) {
+                                if(chessboard[x-1][y].side != selectedPiece.side){
+                                    position = new LinkedList<>();
+                                    position.add(x-1);
+                                    position.add(y);
+                                    movablePositions.add(position);
+                                }
+                            }
+                        }
+                        //check left and right when solider across the river
+                        if(x <= 4){
+                            //check left
+                            if(y>0){
+                                if(chessboard[x][y-1] == null){
+                                    position = new LinkedList<>();
+                                    position.add(x);
+                                    position.add(y-1);
+                                    movablePositions.add(position);
+                                }else{
+                                    if(chessboard[x][y-1].side != selectedPiece.side){
+                                        position = new LinkedList<>();
+                                        position.add(x);
+                                        position.add(y-1);
+                                        movablePositions.add(position);
+                                    }
+                                }
+                            }
+                            //check right
+                            if(y<8){
+                                if(chessboard[x][y+1] == null){
+                                    position = new LinkedList<>();
+                                    position.add(x);
+                                    position.add(y+1);
+                                    movablePositions.add(position);
+                                }else{
+                                    if(chessboard[x][y+1].side != selectedPiece.side){
+                                        position = new LinkedList<>();
+                                        position.add(x);
+                                        position.add(y+1);
+                                        movablePositions.add(position);
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case BLACK_SIDE:
+
+                        break;
+                }
+
         }
         return movablePositions;
     }
