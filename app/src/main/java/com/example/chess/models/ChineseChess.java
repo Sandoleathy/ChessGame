@@ -61,6 +61,7 @@ public class ChineseChess {
             }
         }
         if(!isMoveInvalid){
+            Log.e("ChineseChess" , "Position invalid");
             return false;
         }
 
@@ -103,6 +104,7 @@ public class ChineseChess {
         List<List<Integer>> movablePositions = new LinkedList<>();
         int x = selectedPiece.x;
         int y = selectedPiece.y;
+        Log.e("ChineseChess",selectedPiece.x + " " + selectedPiece.y);
         LinkedList<Integer> position;
         switch (selectedPiece.type){
             case CAR:
@@ -195,6 +197,7 @@ public class ChineseChess {
                 //loop the column that piece have
                 //check down
                 boolean isGunMounted = false;
+                Log.e("ChineseChess","" + isGunMounted);
                 for(int i=x;i<chessboard.length;i++){
                     if(chessboard[i][y] != selectedPiece && chessboard[i][y] == null){
                         if(isGunMounted){
@@ -359,11 +362,65 @@ public class ChineseChess {
                         }
                         break;
                     case BLACK_SIDE:
-
+                        //check forward(down)
+                        if(x < 9){
+                            if(chessboard[x+1][y] == null){
+                                position = new LinkedList<>();
+                                position.add(x+1);
+                                position.add(y);
+                                movablePositions.add(position);
+                            } else if (chessboard[x+1][y] != null) {
+                                if(chessboard[x+1][y].side != selectedPiece.side){
+                                    position = new LinkedList<>();
+                                    position.add(x+1);
+                                    position.add(y);
+                                    movablePositions.add(position);
+                                }
+                            }
+                        }
+                        //check left and right when solider across the river
+                        if(x >= 5){
+                            //check left
+                            if(y>0){
+                                if(chessboard[x][y-1] == null){
+                                    position = new LinkedList<>();
+                                    position.add(x);
+                                    position.add(y-1);
+                                    movablePositions.add(position);
+                                }else{
+                                    if(chessboard[x][y-1].side != selectedPiece.side){
+                                        position = new LinkedList<>();
+                                        position.add(x);
+                                        position.add(y-1);
+                                        movablePositions.add(position);
+                                    }
+                                }
+                            }
+                            //check right
+                            if(y<8){
+                                if(chessboard[x][y+1] == null){
+                                    position = new LinkedList<>();
+                                    position.add(x);
+                                    position.add(y+1);
+                                    movablePositions.add(position);
+                                }else{
+                                    if(chessboard[x][y+1].side != selectedPiece.side){
+                                        position = new LinkedList<>();
+                                        position.add(x);
+                                        position.add(y+1);
+                                        movablePositions.add(position);
+                                    }
+                                }
+                            }
+                        }
                         break;
                 }
-
+            case HORSE:
+                /**
+                 * 
+                 */
         }
+        //Log.e("ChineseChess" , movablePositions.toString());
         return movablePositions;
     }
 }

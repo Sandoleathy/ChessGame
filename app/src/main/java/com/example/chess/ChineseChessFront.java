@@ -55,6 +55,11 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
         // no select piece and click a chess piece
         if(chessboard[row][column] != null && this.game.selectedPiece == null && chessboard[row][column].side == this.game.getCurrentPlayerSide()){
             game.selectPiece(chessboard[row][column]);
+            //I don't know why, but gun(7,7)'s position is wrong
+            //so I add these code to ensure the position inside piece is right
+            chessboard[row][column].x = row;
+            chessboard[row][column].y = column;
+            //-----------------------------------------
             ImageView pieceView = view.findViewById(R.id.chess_piece);
             currentSelectedPiece = pieceView;
             //ImageView pieceView = (ImageView) view;
