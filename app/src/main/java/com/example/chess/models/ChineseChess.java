@@ -418,10 +418,176 @@ public class ChineseChess {
             case HORSE:
                 /**
                  * horse's movement is complex
-                 * horse can move in 日 from which means it is oblique movement
+                 * horse can move in 日 form which means it is oblique movement
                  * but reflect in code it is simple because we only need to check at most 8 positions
                  */
-                
+                List<Integer> horsePosition = new LinkedList<>();
+                List<List<Integer>> horsePositions = new LinkedList<>();
+                //right top
+                horsePosition.add(x-2);
+                horsePosition.add(y+1);
+                horsePositions.add(horsePosition);
+                //right high
+                horsePosition = new LinkedList<>();
+                horsePosition.add(x-1);
+                horsePosition.add(y+2);
+                horsePositions.add(horsePosition);
+                //right low
+                horsePosition = new LinkedList<>();
+                horsePosition.add(x+1);
+                horsePosition.add(y+2);
+                horsePositions.add(horsePosition);
+                //right bottom
+                horsePosition = new LinkedList<>();
+                horsePosition.add(x+2);
+                horsePosition.add(y+1);
+                horsePositions.add(horsePosition);
+                //left bottom
+                horsePosition = new LinkedList<>();
+                horsePosition.add(x+2);
+                horsePosition.add(y-1);
+                horsePositions.add(horsePosition);
+                //left low
+                horsePosition = new LinkedList<>();
+                horsePosition.add(x+1);
+                horsePosition.add(y-2);
+                horsePositions.add(horsePosition);
+                //left high
+                horsePosition = new LinkedList<>();
+                horsePosition.add(x-1);
+                horsePosition.add(y-2);
+                horsePositions.add(horsePosition);
+                //left top
+                horsePosition = new LinkedList<>();
+                horsePosition.add(x-2);
+                horsePosition.add(y-1);
+                horsePositions.add(horsePosition);
+
+                int j = -1;
+                for(List<Integer> i : horsePositions){
+                    j++;
+                    if(i.get(0) >= 0 && i.get(0) <= 9 && i.get(1) >= 0 && i.get(1) <= 8){
+                        //Determine if there are chess pieces blocking the horse
+                        //The eight positions in the linked list are stored in order
+                        if(j == 0 || j == 7){
+                            if(chessboard[x-1][y] != null){
+                                continue;
+                            }
+                        }else if(j==1 || j==2){
+                            if(chessboard[x][y+1] != null){
+                                continue;
+                            }
+                        }else if(j==3 || j==4){
+                            if(chessboard[x+1][y] != null){
+                                continue;
+                            }
+                        }else if(j==5 || j==6){
+                            if(chessboard[x][y-1] != null){
+                                continue;
+                            }
+                        }
+                        if(chessboard[i.get(0)][i.get(1)] != null){
+                            if(chessboard[i.get(0)][i.get(1)].side != selectedPiece.side){
+                                position = new LinkedList<>();
+                                position.add(i.get(0));
+                                position.add(i.get(1));
+                                movablePositions.add(position);
+                            }
+                        }else{
+                            position = new LinkedList<>();
+                            position.add(i.get(0));
+                            position.add(i.get(1));
+                            movablePositions.add(position);
+                        }
+                    }
+
+                }
+            case MINISTER:
+                /**
+                 * minister is just like hose
+                 * but it moves in 田 form
+                 * it's easier because we only need to check 4 points
+                 * minister cannot cross the river and can be blocked
+                 */
+                List<Integer> ministerPos = new LinkedList<>();
+                List<List<Integer>> ministerPositions = new LinkedList<>();
+                //right top
+                ministerPos.add(x-2);
+                ministerPos.add(y+2);
+                ministerPositions.add(ministerPos);
+                //right bottom
+                ministerPos = new LinkedList<>();
+                ministerPos.add(x+2);
+                ministerPos.add(y+2);
+                ministerPositions.add(ministerPos);
+                //left bottom
+                ministerPos = new LinkedList<>();
+                ministerPos.add(x+2);
+                ministerPos.add(y-2);
+                ministerPositions.add(ministerPos);
+                //left top
+                ministerPos = new LinkedList<>();
+                ministerPos.add(x-2);
+                ministerPos.add(y-2);
+                ministerPositions.add(ministerPos);
+
+                j = -1;
+                for(List<Integer> i : ministerPositions){
+                    j++;
+                    //for black and red side its different
+                    //because minister cannot cross the river
+                    switch (selectedPiece.side){
+                        case RED_SIDE:
+                            if(i.get(0) >= 5 && i.get(0) <= 9 && i.get(1) >= 0 && i.get(1) <= 8){
+                                if(j == 0){
+                                    if(chessboard[x-1][y+1] != null){
+                                        continue;
+                                    }
+                                }else if(j == 1){
+                                    if(chessboard[x+1][y+1] != null){
+                                        continue;
+                                    }
+                                }else if(j == 2){
+                                    if(chessboard[x+1][y-1] != null){
+                                        continue;
+                                    }
+                                }else if(j == 3){
+                                    if(chessboard[x-1][y-1] != null){
+                                        continue;
+                                    }
+                                }
+                                position = new LinkedList<>();
+                                position.add(i.get(0));
+                                position.add(i.get(1));
+                                movablePositions.add(position);
+                            }
+                            break;
+                        case BLACK_SIDE:
+                            if(i.get(0) >= 0 && i.get(0) <= 4 && i.get(1) >= 0 && i.get(1) <= 8){
+                                if(j == 0){
+                                    if(chessboard[x-1][y+1] != null){
+                                        continue;
+                                    }
+                                }else if(j == 1){
+                                    if(chessboard[x+1][y+1] != null){
+                                        continue;
+                                    }
+                                }else if(j == 2){
+                                    if(chessboard[x+1][y-1] != null){
+                                        continue;
+                                    }
+                                }else if(j == 3){
+                                    if(chessboard[x-1][y-1] != null){
+                                        continue;
+                                    }
+                                }
+                                position = new LinkedList<>();
+                                position.add(i.get(0));
+                                position.add(i.get(1));
+                                movablePositions.add(position);
+                            }
+                    }
+                }
         }
         //Log.e("ChineseChess" , movablePositions.toString());
         return movablePositions;
