@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 
+import com.example.chess.ChineseChessFront;
 import com.example.chess.R;
 
 import java.util.Stack;
@@ -13,12 +14,14 @@ public class ChineseChess {
     public Stack<ChineseChessPiece> blackDiedPieces;
     public Stack<ChineseChessPiece> redDiedPieces;
     private ChineseChessPiece[][] chessboard; //the board //[row][column]
+    private int currentPlayerSide;
     public ChineseChess(){
         ChessFactory factory = new ChessFactory();
         chessboard = factory.initChineseChess();
         this.selectedPiece = null;
         blackDiedPieces = new Stack<>();
         redDiedPieces = new Stack<>();
+        this.currentPlayerSide = ChineseChessPiece.RED_SIDE;
         Log.i("ChineseChess" , "board init complete");
     }
 
@@ -74,6 +77,16 @@ public class ChineseChess {
         }
 
     }
+    public void switchSide(){
+        if(currentPlayerSide == ChineseChessPiece.RED_SIDE){
+            this.currentPlayerSide = ChineseChessPiece.BLACK_SIDE;
+        }else{
+            this.currentPlayerSide = ChineseChessPiece.RED_SIDE;
+        }
 
+    }
+    public int getCurrentPlayerSide(){
+        return this.currentPlayerSide;
+    }
 
 }

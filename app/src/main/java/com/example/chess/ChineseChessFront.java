@@ -53,7 +53,7 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
         int row = i / 9;
         int column = i % 9;
         // no select piece and click a chess piece
-        if(chessboard[row][column] != null && this.game.selectedPiece == null){
+        if(chessboard[row][column] != null && this.game.selectedPiece == null && chessboard[row][column].side == this.game.getCurrentPlayerSide()){
             game.selectPiece(chessboard[row][column]);
             ImageView pieceView = view.findViewById(R.id.chess_piece);
             currentSelectedPiece = pieceView;
@@ -94,6 +94,7 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
                 //reset select piece ------ go to opponent
                 game.selectedPiece = null;
                 currentSelectedPiece = null;
+                this.game.switchSide();
             }
         }
         //Log.e("ChineseChess" , "click board");
