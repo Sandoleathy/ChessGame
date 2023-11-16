@@ -52,15 +52,15 @@ public class ChineseChess {
      */
     public boolean movePiece(ChineseChessPiece piece , int targetX , int targetY){
         //get the piece
-        boolean isMoveInvalid = false;
+        boolean isMoveValid = false;
         List<List<Integer>> movablePositions = generateMovableArea();
         for(List<Integer> i : movablePositions){
             if(targetX == i.get(0) && targetY == i.get(1)){
-                isMoveInvalid = true;
+                isMoveValid = true;
                 break;
             }
         }
-        if(!isMoveInvalid){
+        if(!isMoveValid){
             Log.e("ChineseChess" , "Position invalid");
             return false;
         }

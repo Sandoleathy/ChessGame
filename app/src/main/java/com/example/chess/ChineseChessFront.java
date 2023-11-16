@@ -10,8 +10,10 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.chess.adapter.PieceAdapter;
+import com.example.chess.iface.ChessPieceType;
 import com.example.chess.models.ChineseChess;
 import com.example.chess.models.ChineseChessPiece;
 
@@ -107,6 +109,18 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
             }
         }
         //Log.e("ChineseChess" , "click board");
+        if(!game.blackDiedPieces.empty()){
+            if(game.blackDiedPieces.pop().type == ChessPieceType.GENERAL){
+                Log.i("ChineseChess" , "Red Win");
+                Toast.makeText(this,"Red Win",Toast.LENGTH_SHORT).show();
+            }
+        }
+        if(!game.redDiedPieces.empty()){
+            if(game.redDiedPieces.pop().type == ChessPieceType.GENERAL){
+                Log.i("ChineseChess" , "Black Win");
+                Toast.makeText(this,"Black Win",Toast.LENGTH_SHORT).show();
+            }
+        }
     }
     private void scaleSelectedPiece(ImageView piece){
         piece.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
