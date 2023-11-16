@@ -16,4 +16,6 @@
     <string name="soldier_red">兵</string>
     <string name="river_name_red">楚河</string>
     <string name="river_name_black">漢界</string>
+    <string name="black_side_info">Black Side Turn</string>
+    <string name="red_side_info">Red Side Turn</string>
 </resources>

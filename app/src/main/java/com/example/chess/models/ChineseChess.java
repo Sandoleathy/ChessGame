@@ -13,7 +13,7 @@ public class ChineseChess {
     public Stack<ChineseChessPiece> blackDiedPieces;
     public Stack<ChineseChessPiece> redDiedPieces;
     private ChineseChessPiece[][] chessboard; //the board //[row][column]
-    private int currentPlayerSide;
+    public int currentPlayerSide;
     public ChineseChess(){
         ChessFactory factory = new ChessFactory();
         chessboard = factory.initChineseChess();
@@ -100,6 +100,11 @@ public class ChineseChess {
     public int getCurrentPlayerSide(){
         return this.currentPlayerSide;
     }
+
+    /**
+     * generate movable positions for selected piece
+     * @return position list
+     */
     private List<List<Integer>> generateMovableArea(){
         List<List<Integer>> movablePositions = new LinkedList<>();
         int x = selectedPiece.x;

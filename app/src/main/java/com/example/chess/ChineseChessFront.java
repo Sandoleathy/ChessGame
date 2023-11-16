@@ -1,6 +1,7 @@
 package com.example.chess;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.chess.adapter.PieceAdapter;
 import com.example.chess.models.ChineseChess;
@@ -101,7 +103,7 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
                 //reset select piece ------ go to opponent
                 game.selectedPiece = null;
                 currentSelectedPiece = null;
-                this.game.switchSide();
+                switchSide(view);
             }
         }
         //Log.e("ChineseChess" , "click board");
@@ -118,5 +120,16 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
         piece.setScaleX(1.0f);
         piece.setScaleY(1.0f);
         piece.requestLayout();
+    }
+    private void switchSide(View view){
+        this.game.switchSide();
+        TextView info = findViewById(R.id.information_bar);
+        if(this.game.currentPlayerSide == ChineseChessPiece.RED_SIDE){
+            info.setText(R.string.red_side_info);
+            info.setTextColor(ContextCompat.getColor(this,R.color.red));
+        }else{
+            info.setText(R.string.black_side_info);
+            info.setTextColor(ContextCompat.getColor(this,R.color.black));
+        }
     }
 }
