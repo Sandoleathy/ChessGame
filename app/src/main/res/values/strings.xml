@@ -3,6 +3,7 @@
     <string name="title_activity_menu">Menu</string>
     <string name="start">Click to start</string>
 
+    <!-- Chess front -->
     <string name="horse">馬</string>
     <string name="car">車</string>
     <string name="minister_black">象</string>
@@ -18,4 +19,9 @@
     <string name="river_name_black">漢界</string>
     <string name="black_side_info">Black Side Turn</string>
     <string name="red_side_info">Red Side Turn</string>
+
+    <!-- select game -->
+    <string name="chinese_chess">Chinese Chess</string>
+    <string name="play">Play</string>
+    <string name="tutorial">Tutorial</string>
 </resources>

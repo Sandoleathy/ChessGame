@@ -103,7 +103,7 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
                 //reset select piece ------ go to opponent
                 game.selectedPiece = null;
                 currentSelectedPiece = null;
-                switchSide(view);
+                switchSide();
             }
         }
         //Log.e("ChineseChess" , "click board");
@@ -121,7 +121,7 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
         piece.setScaleY(1.0f);
         piece.requestLayout();
     }
-    private void switchSide(View view){
+    private void switchSide(){
         this.game.switchSide();
         TextView info = findViewById(R.id.information_bar);
         if(this.game.currentPlayerSide == ChineseChessPiece.RED_SIDE){

@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
 import com.example.chess.R;
 import com.example.chess.iface.ChessPieceType;
 import com.example.chess.iface.iPiece;
@@ -111,9 +113,9 @@ public class PieceAdapter extends BaseAdapter {
         }
         //black and red side will have different text color
         else if (pieceList[i].getSide() == ChineseChessPiece.BLACK_SIDE) {
-            text.setTextColor(Color.BLACK);
+            text.setTextColor(ContextCompat.getColor(context,R.color.black));
         } else if (pieceList[i].getSide() == ChineseChessPiece.RED_SIDE) {
-            text.setTextColor(Color.RED);
+            text.setTextColor(ContextCompat.getColor(context,R.color.red));
         }
         //all type of chess piece are store in one ENUM class
         //different type will result in different appearance

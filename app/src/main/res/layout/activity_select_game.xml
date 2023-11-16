@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Chinese Chess"
+        android:text="@string/chinese_chess"
         app:layout_constraintTop_toBottomOf="@id/picture"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,16 @@
         app:layout_constraintTop_toBottomOf="@id/description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Play"
+        android:text="@string/play"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/to_chinese_chess"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/tutorial"
+        android:id="@+id/to_tutorial"
         />
 
 

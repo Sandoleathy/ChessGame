@@ -4,6 +4,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
+        android:layout_width="45sp"
+        android:layout_height="45sp"
+        android:src="@drawable/cross"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/grid"/>
+    <ImageView
         android:layout_width="30sp"
         android:layout_height="30sp"
         android:background="@drawable/replace_piece"
@@ -23,11 +30,5 @@
         android:text="@string/horse"
         android:textColor="@color/red"
         android:id="@+id/piece_text"/>
-    <ImageView
-        android:layout_width="45sp"
-        android:layout_height="45sp"
-        android:src="@drawable/cross"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/grid"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
