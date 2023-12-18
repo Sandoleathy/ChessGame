@@ -7,6 +7,22 @@
     tools:context=".ChineseChessFront">
     <ImageView
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/screen_background"
+        android:src="@drawable/screen_background"
+        android:scaleType="centerCrop"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="25sp"
+        android:id="@+id/counter"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/information_bar"
+        />
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_height="480sp"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,7 +40,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:textSize="30sp"
-        android:id="@+id/information_bar"/>
+        android:id="@+id/information_bar"
+        android:background="@drawable/infromation_bar_style"/>
     <ImageView
         android:layout_width="50sp"
         android:layout_height="50sp"
