@@ -1,12 +1,15 @@
 package com.example.chess;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -173,4 +176,43 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
             info.setTextColor(ContextCompat.getColor(this,R.color.black));
         }
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            // 创建退出对话框
+            AlertDialog isExit = new AlertDialog.Builder(this).create();
+            // 设置对话框标题
+            isExit.setTitle("Do you want to exit?");
+            // 设置对话框消息
+            isExit.setMessage("Your game will be reset");
+            // 添加选择按钮并注册监听
+            isExit.setButton(AlertDialog.BUTTON_POSITIVE, "exit", listener);
+            isExit.setButton(AlertDialog.BUTTON_NEGATIVE,"cancel", listener);
+            // 显示对话框
+            isExit.show();
+
+        }
+
+        return false;
+
+    }
+    DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
+    {
+        public void onClick(DialogInterface dialog, int which)
+        {
+            switch (which)
+            {
+                case AlertDialog.BUTTON_POSITIVE:
+                    finish();
+                    break;
+                case AlertDialog.BUTTON_NEGATIVE:
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 }
