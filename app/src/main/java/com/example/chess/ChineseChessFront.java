@@ -55,9 +55,10 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
                 TextView clock = findViewById(R.id.counter);
                 clock.setText(text);
                 handler.postDelayed(this, 1000);
-                Log.e("ChineseChess",text);
+                //Log.e("ChineseChess",text);
             }
         };
+        //start counter in main thread
         handler.post(runnable);
     }
 
