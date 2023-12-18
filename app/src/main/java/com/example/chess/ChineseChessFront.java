@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,12 +18,18 @@ import com.example.chess.adapter.PieceAdapter;
 import com.example.chess.iface.ChessPieceType;
 import com.example.chess.models.ChineseChess;
 import com.example.chess.models.ChineseChessPiece;
+import com.example.chess.models.Counter;
+
 
 public class ChineseChessFront extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private ChineseChess game;
     private ChineseChessPiece[][] chessboard;
     private PieceAdapter adapter;
     private ImageView currentSelectedPiece = null;
+    private Handler handler;
+    private Counter counter;
+    private Thread clockThread;
+    private Runnable runnable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         game = new ChineseChess();
@@ -33,6 +41,24 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
         adapter = new PieceAdapter(this,convertBoard());
         boardView.setAdapter(adapter);
         boardView.setOnItemClickListener(this);
+        //start the counter
+        //Warn: Controls in a UI thread cannot be modified by a non-UI thread
+        //we have to use handler
+        handler = new Handler(Looper.getMainLooper());
+        counter = new Counter();
+        clockThread = new Thread(counter);
+        clockThread.start();
+        runnable = new Runnable(){
+            @Override
+            public void run(){
+                String text = counter.getTimeString();
+                TextView clock = findViewById(R.id.counter);
+                clock.setText(text);
+                handler.postDelayed(this, 1000);
+                Log.e("ChineseChess",text);
+            }
+        };
+        handler.post(runnable);
     }
 
     /**
