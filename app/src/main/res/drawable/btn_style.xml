@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false"> <!-- 点击时候的按钮样式 -->
+        <shape>
+            <solid android:color="#00499E" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+
+    <item android:state_pressed="true">    <!-- 不点击时候的按钮样式 -->
+        <shape>
+            <solid android:color="#3C79BD" />
+            <corners android:radius="10dp" />
+        </shape>
+    </item>
+</selector>
