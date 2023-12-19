@@ -142,13 +142,15 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
         if(!game.blackDiedPieces.empty()){
             if(game.blackDiedPieces.pop().type == ChessPieceType.GENERAL){
                 Log.i("ChineseChess" , "Red Win");
-                Toast.makeText(this,"Red Win",Toast.LENGTH_SHORT).show();
+                createWinningHint("Red");
+                //Toast.makeText(this,"Red Win",Toast.LENGTH_SHORT).show();
             }
         }
         if(!game.redDiedPieces.empty()){
             if(game.redDiedPieces.pop().type == ChessPieceType.GENERAL){
                 Log.i("ChineseChess" , "Black Win");
-                Toast.makeText(this,"Black Win",Toast.LENGTH_SHORT).show();
+                createWinningHint("Black");
+                //Toast.makeText(this,"Black Win",Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -182,22 +184,24 @@ public class ChineseChessFront extends AppCompatActivity implements AdapterView.
     {
         if (keyCode == KeyEvent.KEYCODE_BACK )
         {
-            // 创建退出对话框
-            AlertDialog isExit = new AlertDialog.Builder(this).create();
-            // 设置对话框标题
-            isExit.setTitle("Do you want to exit?");
-            // 设置对话框消息
-            isExit.setMessage("Your game will be reset");
-            // 添加选择按钮并注册监听
-            isExit.setButton(AlertDialog.BUTTON_POSITIVE, "exit", listener);
-            isExit.setButton(AlertDialog.BUTTON_NEGATIVE,"cancel", listener);
-            // 显示对话框
-            isExit.show();
-
+            createAlertDialog();
         }
-
         return false;
-
+    }
+    private void createAlertDialog(){
+        AlertDialog isExit = new AlertDialog.Builder(this).create();
+        isExit.setTitle("Do you want to exit?");
+        isExit.setMessage("Your game will be reset");
+        isExit.setButton(AlertDialog.BUTTON_POSITIVE, "exit", listener);
+        isExit.setButton(AlertDialog.BUTTON_NEGATIVE,"cancel", listener);
+        isExit.show();
+    }
+    public void createWinningHint(String side){
+        AlertDialog isExit = new AlertDialog.Builder(this).create();
+        isExit.setTitle("Congratulations!");
+        isExit.setMessage(side + " is winner");
+        isExit.setButton(AlertDialog.BUTTON_POSITIVE, "confirm", listener);
+        isExit.show();
     }
     DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener()
     {

@@ -19,9 +19,18 @@ public class SelectGame extends AppCompatActivity {
         toChineseChess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("User Operation","user play chinese chess");
+                Log.i("ChineseChess","user play chinese chess");
                 Intent chineseChess = new Intent(m,ChineseChessFront.class);
                 startActivity(chineseChess);
+            }
+        });
+        Button toTutorial = findViewById(R.id.to_tutorial);
+        toTutorial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("ChineseChess","user click tutorial");
+                Intent tutorial = new Intent(m,Tutorial.class);
+                startActivity(tutorial);
             }
         });
     }

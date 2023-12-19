@@ -24,4 +24,26 @@
     <string name="chinese_chess">Chinese Chess</string>
     <string name="play">Play</string>
     <string name="tutorial">Tutorial</string>
+    <!--Tutorial-->
+    <string name="chinese_chess_basic">The horizontal line of the chess board forms 9*10=90 intersections, and these 90 intersections are the places where the drop can be made.\n
+1, red first black after, take turns playing chess.\n
+2. The game ends when one side "checkmate" the other (that is, when the other side cannot avoid being eaten).\n
+3. The two sides can also negotiate peace.</string>
+    <string name="piece_movement">
+将/帅（King）\n
+Moves one square at a time, forward, backward, or sideways, but cannot leave the "palace."\n
+仕/士（Guard）\n
+Moves one square diagonally within the "nine-palace" area.\n
+相/象（Elephant）\n
+Moves two squares diagonally, but cannot cross the "Chu River" or "Han Border," forming a "field" shape.\n
+Blocking the "Elephant's Eye": The center of the "field" has another piece, preventing the Elephant from moving.\n
+马（Horse）\n
+Moves in an "L" shape: two squares in one direction (horizontal or vertical) and one square perpendicular to that direction.\n
+Blocking the "Horse's Leg": If there is a piece adjacent to the two squares moved forward, the Horse cannot move.\n
+車（Chariot）\n
+Moves any number of squares horizontally or vertically to an empty space or captures an enemy piece.\n
+炮（Cannon）\n
+Moves like a Chariot when not capturing, but when capturing, it must jump over exactly one piece (can be either friendly or enemy).\n
+兵/卒（Pawn）\n
+Before crossing the "river," moves one square forward only. After crossing the "river," can move one square forward or one square horizontally, but cannot move backward.</string>
 </resources>
